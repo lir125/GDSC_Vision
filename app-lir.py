@@ -26,8 +26,11 @@ def upload():
         cv2.imwrite(os.path.join('static/returns', image.filename), img)
         if len(results[0].boxes.cls):
             name_dict = results[0].names
-            idx = int(results[0].boxes.cls[0])
-            name = name_dict[idx]
+            name_list = []
+            for a in results[0].boxes.cls:
+                idx = int(a)
+                name_list.append(name_dict[idx])
+            name = ", ".join(name_list)
         else:
             name = 'Not Detected'
         return redirect(url_for('display_image', filename=image.filename))
@@ -48,8 +51,11 @@ def file():
             img = results[0].plot()
             cv2.imwrite(os.path.join('/return', image.filename), img)
             name_dict = results[0].names
-            idx = int(results[0].boxes.cls[0])
-            name = name_dict[idx]
+            name_list = []
+            for a in results[0].boxes.cls:
+                idx = int(a)
+                name_list.append(name_dict[idx])
+            name = ", ".join(name_list)
             return name
         else:
             name = 'Not Detected'
