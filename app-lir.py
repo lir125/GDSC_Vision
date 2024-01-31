@@ -5,7 +5,7 @@ import os
 import ultralytics
 from ultralytics import YOLO
 import cv2
-model = YOLO('best.pt')
+model = YOLO('GDSC_Vision/best.pt')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
 class UploadForm(FlaskForm):
